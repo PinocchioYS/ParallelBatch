@@ -8,6 +8,7 @@ SET (octomap_SRCS
   OcTreeNode.cpp
   OcTreeStamped.cpp
   ColorOcTree.cpp
+  ParallelBatchOcTree.cpp
   )
 
 # dynamic and static libs, see CMake FAQ:
@@ -28,8 +29,8 @@ endif()
 export(TARGETS octomap octomap-static
   APPEND FILE "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/cmake/octomap/octomap-targets.cmake")
 
-# ADD_EXECUTABLE(example_parallelbatchOcTree example_parallelbatchOcTree.cpp)
-# TARGET_LINK_LIBRARIES(example_parallelbatchOcTree octomap)
+ADD_EXECUTABLE(example_parallelbatchOcTree example_parallelbatchOcTree.cpp)
+TARGET_LINK_LIBRARIES(example_parallelbatchOcTree octomap)
 
 install(TARGETS octomap octomap-static
   EXPORT octomap-targets
@@ -39,14 +40,7 @@ install(TARGETS octomap octomap-static
 install(EXPORT octomap-targets DESTINATION share/octomap/)
 
 install(TARGETS
-	graph2tree
-	log2graph
-	binvox2bt
-	bt2vrml
-	edit_octree
-	convert_octree
-	eval_octree_accuracy
-	compare_octrees
+	example_parallelbatchOcTree 
 	${INSTALL_TARGETS_DEFAULT_ARGS}
 )
 
